@@ -2,8 +2,6 @@
 class TopTravelDeals::CLI
 
 
-
-
   def call
     puts "----------------------------------------------------------------------------------".colorize(:yellow)
     puts "                                                                             "
@@ -29,14 +27,11 @@ class TopTravelDeals::CLI
     puts " "
     puts "Enter the number of the deal you'd like to see.".colorize(:blue)
     input = gets.strip.to_i
-    #if input == "exit"
-      #goodbye
-    #else
-     until input.between?(1,TopTravelDeals::Deal.all.size)
-       puts "That's not a valid option. Please enter a number between 1-20".colorize(:blue)
-       input = gets.strip.to_i
-     end
 
+    until input.between?(1,TopTravelDeals::Deal.all.size)
+      puts "That's not a valid option. Please enter a number between 1-20".colorize(:blue)
+      input = gets.strip.to_i
+    end
 
     choice = TopTravelDeals::Deal.find(input)
 
@@ -94,38 +89,5 @@ class TopTravelDeals::CLI
   def goodbye
     puts "Goodbye! Come back soon to see more Top Travel Deals!!".colorize(:blue)
   end
-
-  #def self.scrape_list
-    #should return a list of instances of the travel deals
-    #doc = Nokogiri::HTML(open("https://www.travelzoo.com/top20/?pageType=Homepage"))
-    #doc.search(".deal-card a").each do |info|
-      #deal = TopTravelDeals::Deal.new
-      #deal.name = info.search("span.deal-headline-text").text
-      #deal.price = info.search("span.deal-headline-price").text
-      #deal.url = "#{info.attr('href')}"
-      #deal.offered_by = info.search("p.h6.deal-source").text
-      #deal.location = info.search("p.h6.deal-location").text
-    #end
-  #end
-
-    #def self.scrape_description(choice_url)
-      #detail = Nokogiri::HTML(open(choice_url))
-        #system("open'#{choice_url}'")
-    #  summary = detail.search("div.section").text.strip
-
-      #title = detail.search("title").text
-      #puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
-      #puts "                       #{title}                      ".colorize(:yellow)
-      #puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
-      #puts "#{summary}".colorize(:yellow)
-      #puts " "
-      #puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
-    #end
-
-
-
-#The Deal = detail.search("div.section h2").text
-
-#Summary = detail.search("div.section p").text   Have some extra stuff in there that will have to figure out how to get rid of.
 
 end

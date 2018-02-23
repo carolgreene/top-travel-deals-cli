@@ -25,10 +25,10 @@ class TopTravelDeals::Deal
     self.all[id - 1]
   end
 
-  def self.find_by_name(name)
-    @@all.detect do |deal|
-      deal.name.downcase.strip == name.downcase.strip
-    end
-  end
+  #def self.find_by_name(name)
+    #@@all.detect do |deal|
+      #deal.name.downcase.strip == name.downcase.strip
+    #end
+  #end
 
 end
