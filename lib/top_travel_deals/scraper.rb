@@ -1,3 +1,4 @@
+
 require 'pry'
 
 class TopTravelDeals::Scraper
@@ -22,17 +23,18 @@ class TopTravelDeals::Scraper
     end
   end
 
-  def self.scrape_description(choice_url)
-    detail = Nokogiri::HTML(open(choice_url))
-      #system("open'#{choice_url}'")
-    summary = detail.search("div.section").text.strip
+  def self.scrape_description(deal)
+    detail = Nokogiri::HTML(open(deal.url))
+      #system("open'#{deal_url}'")
+    deal.summary = detail.search("div.section").text.strip
 
-    title = detail.search("title").text
-    puts "----------------------------------------------------------------------------------".colorize(:yellow)
-    puts "                       #{title}                      ".colorize(:yellow)
-    puts "----------------------------------------------------------------------------------".colorize(:yellow)
-    puts "#{summary}".colorize(:yellow)
-    puts " "
-    puts "----------------------------------------------------------------------------------".colorize(:yellow)
+
+    #title = detail.search("title").text
+    #puts "----------------------------------------------------------------------------------".colorize(:yellow)
+    #puts "                       #{title}                      ".colorize(:yellow)
+    #puts "----------------------------------------------------------------------------------".colorize(:yellow)
+    #puts "#{deal.summary}".colorize(:yellow)
+    #puts " "
+    #puts "----------------------------------------------------------------------------------".colorize(:yellow)
   end
 end

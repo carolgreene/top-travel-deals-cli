@@ -56,9 +56,9 @@ class TopTravelDeals::CLI
       answer = gets.strip.upcase
     end
     if answer == "Y" || answer == "YES"
-      choice_url = choice.url
-      TopTravelDeals::Scraper.scrape_description(choice_url)
+      TopTravelDeals::Scraper.scrape_description(TopTravelDeals::Deal.find(input))
     end
+    print_description(choice)
 
     puts "Would you like to see another deal?".colorize(:blue)
     answer1 = gets.strip.upcase
@@ -80,6 +80,15 @@ class TopTravelDeals::CLI
     puts "Price........#{choice.price}".colorize(:yellow)
     puts "Offered By...#{choice.offered_by}".colorize(:yellow)
     puts "Webpage......#{choice.url}".colorize(:yellow)
+  end
+
+  def print_description(choice)
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
+    puts "                       #{choice.name}                      ".colorize(:yellow)
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
+    puts "#{choice.summary}".colorize(:yellow)
+    puts " "
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
   end
 
   def goodbye
